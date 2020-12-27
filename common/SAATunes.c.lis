@@ -1,0 +1,1179 @@
+1     0000              MODULE SAATunes_c
+2     0000              LINE 0, "../common/SAATunes.c"
+0     0000              
+1     0000              ;--------------------------------------------------------
+2     0000              ; File Created by SDCC : free open source ANSI-C Compiler
+3     0000              ; Version 4.0.3 #11877 (Linux)
+4     0000              ;--------------------------------------------------------
+5     0000              ; Processed by Z88DK
+6     0000              ;--------------------------------------------------------
+7     0000              
+8     0000              	EXTERN __divschar
+9     0000              	EXTERN __divschar_callee
+10    0000              	EXTERN __divsint
+11    0000              	EXTERN __divsint_callee
+12    0000              	EXTERN __divslong
+13    0000              	EXTERN __divslong_callee
+14    0000              	EXTERN __divslonglong
+15    0000              	EXTERN __divslonglong_callee
+16    0000              	EXTERN __divsuchar
+17    0000              	EXTERN __divsuchar_callee
+18    0000              	EXTERN __divuchar
+19    0000              	EXTERN __divuchar_callee
+20    0000              	EXTERN __divuint
+21    0000              	EXTERN __divuint_callee
+22    0000              	EXTERN __divulong
+23    0000              	EXTERN __divulong_callee
+24    0000              	EXTERN __divulonglong
+25    0000              	EXTERN __divulonglong_callee
+26    0000              	EXTERN __divuschar
+27    0000              	EXTERN __divuschar_callee
+28    0000              	EXTERN __modschar
+29    0000              	EXTERN __modschar_callee
+30    0000              	EXTERN __modsint
+31    0000              	EXTERN __modsint_callee
+32    0000              	EXTERN __modslong
+33    0000              	EXTERN __modslong_callee
+34    0000              	EXTERN __modslonglong
+35    0000              	EXTERN __modslonglong_callee
+36    0000              	EXTERN __modsuchar
+37    0000              	EXTERN __modsuchar_callee
+38    0000              	EXTERN __moduchar
+39    0000              	EXTERN __moduchar_callee
+40    0000              	EXTERN __moduint
+41    0000              	EXTERN __moduint_callee
+42    0000              	EXTERN __modulong
+43    0000              	EXTERN __modulong_callee
+44    0000              	EXTERN __modulonglong
+45    0000              	EXTERN __modulonglong_callee
+46    0000              	EXTERN __moduschar
+47    0000              	EXTERN __moduschar_callee
+48    0000              	EXTERN __mulint
+49    0000              	EXTERN __mulint_callee
+50    0000              	EXTERN __mullong
+51    0000              	EXTERN __mullong_callee
+52    0000              	EXTERN __mullonglong
+53    0000              	EXTERN __mullonglong_callee
+54    0000              	EXTERN __mulschar
+55    0000              	EXTERN __mulschar_callee
+56    0000              	EXTERN __mulsuchar
+57    0000              	EXTERN __mulsuchar_callee
+58    0000              	EXTERN __muluschar
+59    0000              	EXTERN __muluschar_callee
+60    0000              	EXTERN __rlslonglong
+61    0000              	EXTERN __rlslonglong_callee
+62    0000              	EXTERN __rlulonglong
+63    0000              	EXTERN __rlulonglong_callee
+64    0000              	EXTERN __rrslonglong
+65    0000              	EXTERN __rrslonglong_callee
+66    0000              	EXTERN __rrulonglong
+67    0000              	EXTERN __rrulonglong_callee
+68    0000              	EXTERN ___sdcc_call_hl
+69    0000              	EXTERN ___sdcc_call_iy
+70    0000              	EXTERN ___sdcc_enter_ix
+71    0000              	EXTERN _banked_call
+72    0000              	EXTERN _banked_ret
+73    0000              	EXTERN ___fs2schar
+74    0000              	EXTERN ___fs2schar_callee
+75    0000              	EXTERN ___fs2sint
+76    0000              	EXTERN ___fs2sint_callee
+77    0000              	EXTERN ___fs2slong
+78    0000              	EXTERN ___fs2slong_callee
+79    0000              	EXTERN ___fs2slonglong
+80    0000              	EXTERN ___fs2slonglong_callee
+81    0000              	EXTERN ___fs2uchar
+82    0000              	EXTERN ___fs2uchar_callee
+83    0000              	EXTERN ___fs2uint
+84    0000              	EXTERN ___fs2uint_callee
+85    0000              	EXTERN ___fs2ulong
+86    0000              	EXTERN ___fs2ulong_callee
+87    0000              	EXTERN ___fs2ulonglong
+88    0000              	EXTERN ___fs2ulonglong_callee
+89    0000              	EXTERN ___fsadd
+90    0000              	EXTERN ___fsadd_callee
+91    0000              	EXTERN ___fsdiv
+92    0000              	EXTERN ___fsdiv_callee
+93    0000              	EXTERN ___fseq
+94    0000              	EXTERN ___fseq_callee
+95    0000              	EXTERN ___fsgt
+96    0000              	EXTERN ___fsgt_callee
+97    0000              	EXTERN ___fslt
+98    0000              	EXTERN ___fslt_callee
+99    0000              	EXTERN ___fsmul
+100   0000              	EXTERN ___fsmul_callee
+101   0000              	EXTERN ___fsneq
+102   0000              	EXTERN ___fsneq_callee
+103   0000              	EXTERN ___fssub
+104   0000              	EXTERN ___fssub_callee
+105   0000              	EXTERN ___schar2fs
+106   0000              	EXTERN ___schar2fs_callee
+107   0000              	EXTERN ___sint2fs
+108   0000              	EXTERN ___sint2fs_callee
+109   0000              	EXTERN ___slong2fs
+110   0000              	EXTERN ___slong2fs_callee
+111   0000              	EXTERN ___slonglong2fs
+112   0000              	EXTERN ___slonglong2fs_callee
+113   0000              	EXTERN ___uchar2fs
+114   0000              	EXTERN ___uchar2fs_callee
+115   0000              	EXTERN ___uint2fs
+116   0000              	EXTERN ___uint2fs_callee
+117   0000              	EXTERN ___ulong2fs
+118   0000              	EXTERN ___ulong2fs_callee
+119   0000              	EXTERN ___ulonglong2fs
+120   0000              	EXTERN ___ulonglong2fs_callee
+121   0000              	EXTERN ____sdcc_2_copy_src_mhl_dst_deix
+122   0000              	EXTERN ____sdcc_2_copy_src_mhl_dst_bcix
+123   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_deix
+124   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_bcix
+125   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_mbc
+126   0000              	EXTERN ____sdcc_4_ldi_nosave_bc
+127   0000              	EXTERN ____sdcc_4_ldi_save_bc
+128   0000              	EXTERN ____sdcc_4_push_hlix
+129   0000              	EXTERN ____sdcc_4_push_mhl
+130   0000              	EXTERN ____sdcc_lib_setmem_hl
+131   0000              	EXTERN ____sdcc_ll_add_de_bc_hl
+132   0000              	EXTERN ____sdcc_ll_add_de_bc_hlix
+133   0000              	EXTERN ____sdcc_ll_add_de_hlix_bc
+134   0000              	EXTERN ____sdcc_ll_add_de_hlix_bcix
+135   0000              	EXTERN ____sdcc_ll_add_deix_bc_hl
+136   0000              	EXTERN ____sdcc_ll_add_deix_hlix
+137   0000              	EXTERN ____sdcc_ll_add_hlix_bc_deix
+138   0000              	EXTERN ____sdcc_ll_add_hlix_deix_bc
+139   0000              	EXTERN ____sdcc_ll_add_hlix_deix_bcix
+140   0000              	EXTERN ____sdcc_ll_asr_hlix_a
+141   0000              	EXTERN ____sdcc_ll_asr_mbc_a
+142   0000              	EXTERN ____sdcc_ll_copy_src_de_dst_hlix
+143   0000              	EXTERN ____sdcc_ll_copy_src_de_dst_hlsp
+144   0000              	EXTERN ____sdcc_ll_copy_src_deix_dst_hl
+145   0000              	EXTERN ____sdcc_ll_copy_src_deix_dst_hlix
+146   0000              	EXTERN ____sdcc_ll_copy_src_deixm_dst_hlsp
+147   0000              	EXTERN ____sdcc_ll_copy_src_desp_dst_hlsp
+148   0000              	EXTERN ____sdcc_ll_copy_src_hl_dst_de
+149   0000              	EXTERN ____sdcc_ll_copy_src_hlsp_dst_de
+150   0000              	EXTERN ____sdcc_ll_copy_src_hlsp_dst_deixm
+151   0000              	EXTERN ____sdcc_ll_lsl_hlix_a
+152   0000              	EXTERN ____sdcc_ll_lsl_mbc_a
+153   0000              	EXTERN ____sdcc_ll_lsr_hlix_a
+154   0000              	EXTERN ____sdcc_ll_lsr_mbc_a
+155   0000              	EXTERN ____sdcc_ll_push_hlix
+156   0000              	EXTERN ____sdcc_ll_push_mhl
+157   0000              	EXTERN ____sdcc_ll_sub_de_bc_hl
+158   0000              	EXTERN ____sdcc_ll_sub_de_bc_hlix
+159   0000              	EXTERN ____sdcc_ll_sub_de_hlix_bc
+160   0000              	EXTERN ____sdcc_ll_sub_de_hlix_bcix
+161   0000              	EXTERN ____sdcc_ll_sub_deix_bc_hl
+162   0000              	EXTERN ____sdcc_ll_sub_deix_hlix
+163   0000              	EXTERN ____sdcc_ll_sub_hlix_bc_deix
+164   0000              	EXTERN ____sdcc_ll_sub_hlix_deix_bc
+165   0000              	EXTERN ____sdcc_ll_sub_hlix_deix_bcix
+166   0000              	EXTERN ____sdcc_load_debc_deix
+167   0000              	EXTERN ____sdcc_load_dehl_deix
+168   0000              	EXTERN ____sdcc_load_debc_mhl
+169   0000              	EXTERN ____sdcc_load_hlde_mhl
+170   0000              	EXTERN ____sdcc_store_dehl_bcix
+171   0000              	EXTERN ____sdcc_store_debc_hlix
+172   0000              	EXTERN ____sdcc_store_debc_mhl
+173   0000              	EXTERN ____sdcc_cpu_pop_ei
+174   0000              	EXTERN ____sdcc_cpu_pop_ei_jp
+175   0000              	EXTERN ____sdcc_cpu_push_di
+176   0000              	EXTERN ____sdcc_outi
+177   0000              	EXTERN ____sdcc_outi_128
+178   0000              	EXTERN ____sdcc_outi_256
+179   0000              	EXTERN ____sdcc_ldi
+180   0000              	EXTERN ____sdcc_ldi_128
+181   0000              	EXTERN ____sdcc_ldi_256
+182   0000              	EXTERN ____sdcc_4_copy_srcd_hlix_dst_deix
+183   0000              	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_deix
+184   0000              	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_deix
+185   0000              	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_deix
+186   0000              	EXTERN ____sdcc_4_or_src_dehl_dst_bcix
+187   0000              	EXTERN ____sdcc_4_xor_src_dehl_dst_bcix
+188   0000              	EXTERN ____sdcc_4_and_src_dehl_dst_bcix
+189   0000              	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_debc
+190   0000              	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_debc
+191   0000              	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_debc
+192   0000              	EXTERN ____sdcc_4_cpl_src_mhl_dst_debc
+193   0000              	EXTERN ____sdcc_4_xor_src_debc_mhl_dst_debc
+194   0000              	EXTERN ____sdcc_4_or_src_debc_mhl_dst_debc
+195   0000              	EXTERN ____sdcc_4_and_src_debc_mhl_dst_debc
+196   0000              	EXTERN ____sdcc_4_and_src_debc_hlix_dst_debc
+197   0000              	EXTERN ____sdcc_4_or_src_debc_hlix_dst_debc
+198   0000              	EXTERN ____sdcc_4_xor_src_debc_hlix_dst_debc
+199   0000              
+200   0000              ;--------------------------------------------------------
+201   0000              ; Public variables in this module
+202   0000              ;--------------------------------------------------------
+203   0000              	GLOBAL _file_header
+204   0000              	GLOBAL _SAATunesInit
+205   0000              	GLOBAL _SAATunesStrum
+206   0000              	GLOBAL _SAATunesPlayNote
+207   0000              	GLOBAL _SAATunesStopNote
+208   0000              	GLOBAL _SAATunesTick
+209   0000              ;--------------------------------------------------------
+210   0000              ; Externals used
+211   0000              ;--------------------------------------------------------
+212   0000              	GLOBAL _SAATunesStopScore
+213   0000              	GLOBAL _SAATunesPlayScore
+214   0000              	GLOBAL _z80_otdr_callee
+215   0000              	GLOBAL _z80_otdr
+216   0000              	GLOBAL _z80_otir_callee
+217   0000              	GLOBAL _z80_otir
+218   0000              	GLOBAL _z80_outp_callee
+219   0000              	GLOBAL _z80_outp
+220   0000              	GLOBAL _z80_indr_callee
+221   0000              	GLOBAL _z80_indr
+222   0000              	GLOBAL _z80_inir_callee
+223   0000              	GLOBAL _z80_inir
+224   0000              	GLOBAL _z80_inp_fastcall
+225   0000              	GLOBAL _z80_inp
+226   0000              	GLOBAL _z80_set_int_state_fastcall
+227   0000              	GLOBAL _z80_set_int_state
+228   0000              	GLOBAL _z80_get_int_state
+229   0000              	GLOBAL _z80_delay_tstate_fastcall
+230   0000              	GLOBAL _z80_delay_tstate
+231   0000              	GLOBAL _z80_delay_ms_fastcall
+232   0000              	GLOBAL _z80_delay_ms
+233   0000              	GLOBAL _im2_remove_generic_callback_callee
+234   0000              	GLOBAL _im2_remove_generic_callback
+235   0000              	GLOBAL _im2_prepend_generic_callback_callee
+236   0000              	GLOBAL _im2_prepend_generic_callback
+237   0000              	GLOBAL _im2_append_generic_callback_callee
+238   0000              	GLOBAL _im2_append_generic_callback
+239   0000              	GLOBAL _im2_create_generic_isr_8080_callee
+240   0000              	GLOBAL _im2_create_generic_isr_8080
+241   0000              	GLOBAL _im2_create_generic_isr_callee
+242   0000              	GLOBAL _im2_create_generic_isr
+243   0000              	GLOBAL _im2_install_isr_callee
+244   0000              	GLOBAL _im2_install_isr
+245   0000              	GLOBAL _im2_init_fastcall
+246   0000              	GLOBAL _im2_init
+247   0000              	GLOBAL _ffsll_callee
+248   0000              	GLOBAL _ffsll
+249   0000              	GLOBAL _strxfrm_callee
+250   0000              	GLOBAL _strxfrm
+251   0000              	GLOBAL _strupr_fastcall
+252   0000              	GLOBAL _strupr
+253   0000              	GLOBAL _strtok_r_callee
+254   0000              	GLOBAL _strtok_r
+255   0000              	GLOBAL _strtok_callee
+256   0000              	GLOBAL _strtok
+257   0000              	GLOBAL _strstrip_fastcall
+258   0000              	GLOBAL _strstrip
+259   0000              	GLOBAL _strstr_callee
+260   0000              	GLOBAL _strstr
+261   0000              	GLOBAL _strspn_callee
+262   0000              	GLOBAL _strspn
+263   0000              	GLOBAL _strsep_callee
+264   0000              	GLOBAL _strsep
+265   0000              	GLOBAL _strrstrip_fastcall
+266   0000              	GLOBAL _strrstrip
+267   0000              	GLOBAL _strrstr_callee
+268   0000              	GLOBAL _strrstr
+269   0000              	GLOBAL _strrspn_callee
+270   0000              	GLOBAL _strrspn
+271   0000              	GLOBAL _strrev_fastcall
+272   0000              	GLOBAL _strrev
+273   0000              	GLOBAL _strrcspn_callee
+274   0000              	GLOBAL _strrcspn
+275   0000              	GLOBAL _strrchr_callee
+276   0000              	GLOBAL _strrchr
+277   0000              	GLOBAL _strpbrk_callee
+278   0000              	GLOBAL _strpbrk
+279   0000              	GLOBAL _strnlen_callee
+280   0000              	GLOBAL _strnlen
+281   0000              	GLOBAL _strnicmp_callee
+282   0000              	GLOBAL _strnicmp
+283   0000              	GLOBAL _strndup_callee
+284   0000              	GLOBAL _strndup
+285   0000              	GLOBAL _strncpy_callee
+286   0000              	GLOBAL _strncpy
+287   0000              	GLOBAL _strncmp_callee
+288   0000              	GLOBAL _strncmp
+289   0000              	GLOBAL _strnchr_callee
+290   0000              	GLOBAL _strnchr
+291   0000              	GLOBAL _strncat_callee
+292   0000              	GLOBAL _strncat
+293   0000              	GLOBAL _strncasecmp_callee
+294   0000              	GLOBAL _strncasecmp
+295   0000              	GLOBAL _strlwr_fastcall
+296   0000              	GLOBAL _strlwr
+297   0000              	GLOBAL _strlen_fastcall
+298   0000              	GLOBAL _strlen
+299   0000              	GLOBAL _strlcpy_callee
+300   0000              	GLOBAL _strlcpy
+301   0000              	GLOBAL _strlcat_callee
+302   0000              	GLOBAL _strlcat
+303   0000              	GLOBAL _stricmp_callee
+304   0000              	GLOBAL _stricmp
+305   0000              	GLOBAL _strerror_fastcall
+306   0000              	GLOBAL _strerror
+307   0000              	GLOBAL _strdup_fastcall
+308   0000              	GLOBAL _strdup
+309   0000              	GLOBAL _strcspn_callee
+310   0000              	GLOBAL _strcspn
+311   0000              	GLOBAL _strcpy_callee
+312   0000              	GLOBAL _strcpy
+313   0000              	GLOBAL _strcoll_callee
+314   0000              	GLOBAL _strcoll
+315   0000              	GLOBAL _strcmp_callee
+316   0000              	GLOBAL _strcmp
+317   0000              	GLOBAL _strchrnul_callee
+318   0000              	GLOBAL _strchrnul
+319   0000              	GLOBAL _strchr_callee
+320   0000              	GLOBAL _strchr
+321   0000              	GLOBAL _strcat_callee
+322   0000              	GLOBAL _strcat
+323   0000              	GLOBAL _strcasecmp_callee
+324   0000              	GLOBAL _strcasecmp
+325   0000              	GLOBAL _stpncpy_callee
+326   0000              	GLOBAL _stpncpy
+327   0000              	GLOBAL _stpcpy_callee
+328   0000              	GLOBAL _stpcpy
+329   0000              	GLOBAL _memswap_callee
+330   0000              	GLOBAL _memswap
+331   0000              	GLOBAL _memset_callee
+332   0000              	GLOBAL _memset
+333   0000              	GLOBAL _memrchr_callee
+334   0000              	GLOBAL _memrchr
+335   0000              	GLOBAL _memmove_callee
+336   0000              	GLOBAL _memmove
+337   0000              	GLOBAL _memmem_callee
+338   0000              	GLOBAL _memmem
+339   0000              	GLOBAL _memcpy_callee
+340   0000              	GLOBAL _memcpy
+341   0000              	GLOBAL _memcmp_callee
+342   0000              	GLOBAL _memcmp
+343   0000              	GLOBAL _memchr_callee
+344   0000              	GLOBAL _memchr
+345   0000              	GLOBAL _memccpy_callee
+346   0000              	GLOBAL _memccpy
+347   0000              	GLOBAL _ffsl_fastcall
+348   0000              	GLOBAL _ffsl
+349   0000              	GLOBAL _ffs_fastcall
+350   0000              	GLOBAL _ffs
+351   0000              	GLOBAL __strrstrip__fastcall
+352   0000              	GLOBAL __strrstrip_
+353   0000              	GLOBAL __memupr__callee
+354   0000              	GLOBAL __memupr_
+355   0000              	GLOBAL __memstrcpy__callee
+356   0000              	GLOBAL __memstrcpy_
+357   0000              	GLOBAL __memlwr__callee
+358   0000              	GLOBAL __memlwr_
+359   0000              	GLOBAL _rawmemchr_callee
+360   0000              	GLOBAL _rawmemchr
+361   0000              	GLOBAL _strnset_callee
+362   0000              	GLOBAL _strnset
+363   0000              	GLOBAL _strset_callee
+364   0000              	GLOBAL _strset
+365   0000              	GLOBAL _rindex_callee
+366   0000              	GLOBAL _rindex
+367   0000              	GLOBAL _index_callee
+368   0000              	GLOBAL _index
+369   0000              	GLOBAL _bzero_callee
+370   0000              	GLOBAL _bzero
+371   0000              	GLOBAL _bcopy_callee
+372   0000              	GLOBAL _bcopy
+373   0000              	GLOBAL _bcmp_callee
+374   0000              	GLOBAL _bcmp
+375   0000              	GLOBAL _ulltoa_callee
+376   0000              	GLOBAL _ulltoa
+377   0000              	GLOBAL _strtoull_callee
+378   0000              	GLOBAL _strtoull
+379   0000              	GLOBAL _strtoll_callee
+380   0000              	GLOBAL _strtoll
+381   0000              	GLOBAL _lltoa_callee
+382   0000              	GLOBAL _lltoa
+383   0000              	GLOBAL _llabs_callee
+384   0000              	GLOBAL _llabs
+385   0000              	GLOBAL __lldivu__callee
+386   0000              	GLOBAL __lldivu_
+387   0000              	GLOBAL __lldiv__callee
+388   0000              	GLOBAL __lldiv_
+389   0000              	GLOBAL _atoll_callee
+390   0000              	GLOBAL _atoll
+391   0000              	GLOBAL _realloc_unlocked_callee
+392   0000              	GLOBAL _realloc_unlocked
+393   0000              	GLOBAL _malloc_unlocked_fastcall
+394   0000              	GLOBAL _malloc_unlocked
+395   0000              	GLOBAL _free_unlocked_fastcall
+396   0000              	GLOBAL _free_unlocked
+397   0000              	GLOBAL _calloc_unlocked_callee
+398   0000              	GLOBAL _calloc_unlocked
+399   0000              	GLOBAL _aligned_alloc_unlocked_callee
+400   0000              	GLOBAL _aligned_alloc_unlocked
+401   0000              	GLOBAL _realloc_callee
+402   0000              	GLOBAL _realloc
+403   0000              	GLOBAL _malloc_fastcall
+404   0000              	GLOBAL _malloc
+405   0000              	GLOBAL _free_fastcall
+406   0000              	GLOBAL _free
+407   0000              	GLOBAL _calloc_callee
+408   0000              	GLOBAL _calloc
+409   0000              	GLOBAL _aligned_alloc_callee
+410   0000              	GLOBAL _aligned_alloc
+411   0000              	GLOBAL _utoa_callee
+412   0000              	GLOBAL _utoa
+413   0000              	GLOBAL _ultoa_callee
+414   0000              	GLOBAL _ultoa
+415   0000              	GLOBAL _system_fastcall
+416   0000              	GLOBAL _system
+417   0000              	GLOBAL _strtoul_callee
+418   0000              	GLOBAL _strtoul
+419   0000              	GLOBAL _strtol_callee
+420   0000              	GLOBAL _strtol
+421   0000              	GLOBAL _strtof_callee
+422   0000              	GLOBAL _strtof
+423   0000              	GLOBAL _strtod_callee
+424   0000              	GLOBAL _strtod
+425   0000              	GLOBAL _srand_fastcall
+426   0000              	GLOBAL _srand
+427   0000              	GLOBAL _rand
+428   0000              	GLOBAL _quick_exit_fastcall
+429   0000              	GLOBAL _quick_exit
+430   0000              	GLOBAL _qsort_callee
+431   0000              	GLOBAL _qsort
+432   0000              	GLOBAL _ltoa_callee
+433   0000              	GLOBAL _ltoa
+434   0000              	GLOBAL _labs_fastcall
+435   0000              	GLOBAL _labs
+436   0000              	GLOBAL _itoa_callee
+437   0000              	GLOBAL _itoa
+438   0000              	GLOBAL _ftoh_callee
+439   0000              	GLOBAL _ftoh
+440   0000              	GLOBAL _ftog_callee
+441   0000              	GLOBAL _ftog
+442   0000              	GLOBAL _ftoe_callee
+443   0000              	GLOBAL _ftoe
+444   0000              	GLOBAL _ftoa_callee
+445   0000              	GLOBAL _ftoa
+446   0000              	GLOBAL _exit_fastcall
+447   0000              	GLOBAL _exit
+448   0000              	GLOBAL _dtoh_callee
+449   0000              	GLOBAL _dtoh
+450   0000              	GLOBAL _dtog_callee
+451   0000              	GLOBAL _dtog
+452   0000              	GLOBAL _dtoe_callee
+453   0000              	GLOBAL _dtoe
+454   0000              	GLOBAL _dtoa_callee
+455   0000              	GLOBAL _dtoa
+456   0000              	GLOBAL _bsearch_callee
+457   0000              	GLOBAL _bsearch
+458   0000              	GLOBAL _atol_fastcall
+459   0000              	GLOBAL _atol
+460   0000              	GLOBAL _atoi_fastcall
+461   0000              	GLOBAL _atoi
+462   0000              	GLOBAL _atof_fastcall
+463   0000              	GLOBAL _atof
+464   0000              	GLOBAL _atexit_fastcall
+465   0000              	GLOBAL _atexit
+466   0000              	GLOBAL _at_quick_exit_fastcall
+467   0000              	GLOBAL _at_quick_exit
+468   0000              	GLOBAL _abs_fastcall
+469   0000              	GLOBAL _abs
+470   0000              	GLOBAL _abort
+471   0000              	GLOBAL __strtou__callee
+472   0000              	GLOBAL __strtou_
+473   0000              	GLOBAL __strtoi__callee
+474   0000              	GLOBAL __strtoi_
+475   0000              	GLOBAL __random_uniform_xor_8__fastcall
+476   0000              	GLOBAL __random_uniform_xor_8_
+477   0000              	GLOBAL __random_uniform_xor_32__fastcall
+478   0000              	GLOBAL __random_uniform_xor_32_
+479   0000              	GLOBAL __random_uniform_cmwc_8__fastcall
+480   0000              	GLOBAL __random_uniform_cmwc_8_
+481   0000              	GLOBAL __shellsort__callee
+482   0000              	GLOBAL __shellsort_
+483   0000              	GLOBAL __quicksort__callee
+484   0000              	GLOBAL __quicksort_
+485   0000              	GLOBAL __insertion_sort__callee
+486   0000              	GLOBAL __insertion_sort_
+487   0000              	GLOBAL __ldivu__callee
+488   0000              	GLOBAL __ldivu_
+489   0000              	GLOBAL __ldiv__callee
+490   0000              	GLOBAL __ldiv_
+491   0000              	GLOBAL __divu__callee
+492   0000              	GLOBAL __divu_
+493   0000              	GLOBAL __div__callee
+494   0000              	GLOBAL __div_
+495   0000              ;--------------------------------------------------------
+496   0000              ; special function registers
+497   0000              ;--------------------------------------------------------
+498   0000              defc _saa_port_val	=	0x00ff
+499   0000              defc _saa_port_reg	=	0x01ff
+500   0000              ;--------------------------------------------------------
+501   0000              ; ram data
+502   0000              ;--------------------------------------------------------
+503   0000              	SECTION bss_compiler
+504   0000              _file_header:
+505   0000  00 00 00 00 00 00 
+                        	DEFS 6
+506   0006              ;--------------------------------------------------------
+507   0006              ; ram data
+508   0006              ;--------------------------------------------------------
+509   0006              
+510   0006              IF 0
+511   0006              
+512   0006              ; .area _INITIALIZED removed by z88dk
+513   0006              
+514   0006              _volume_present:
+515   0006              	DEFS 1
+516   0006              _noteAdr:
+517   0006              	DEFS 12
+518   0006              _octaveAdr:
+519   0006              	DEFS 3
+520   0006              _channelAdr:
+521   0006              	DEFS 6
+522   0006              
+523   0006              ENDIF
+524   0006              
+525   0006              ;--------------------------------------------------------
+526   0006              ; absolute external ram data
+527   0006              ;--------------------------------------------------------
+528   0006              	SECTION IGNORE
+529   0000              ;--------------------------------------------------------
+530   0000              ; global & static initialisations
+531   0000              ;--------------------------------------------------------
+532   0000              	SECTION code_crt_init
+533   0000              ;--------------------------------------------------------
+534   0000              ; Home
+535   0000              ;--------------------------------------------------------
+536   0000              	SECTION IGNORE
+537   0000              ;--------------------------------------------------------
+538   0000              ; code
+539   0000              ;--------------------------------------------------------
+540   0000              	SECTION code_compiler
+541   0000              ;	---------------------------------
+542   0000              ; Function SAATunesInit
+543   0000              ; ---------------------------------
+544   0000              _SAATunesInit:
+545   0000  DD E5       	push	ix
+546   0002  DD 21 00 00 	ld	ix,0
+547   0006  DD 39       	add	ix,sp
+548   0008  DD 6E 04    	ld	l,(ix+4)
+549   000B  DD 66 05    	ld	h,(ix+5)
+550   000E  06 2E       	ld	b,0x2e
+551   0010              l_SAATunesInit_00103:
+552   0010  36 00       	ld	(hl),0x00
+553   0012  23          	inc	hl
+554   0013  10 FB       	djnz	l_SAATunesInit_00103
+555   0015  DD 4E 04    	ld	c,(ix+4)
+556   0018  DD 46 05    	ld	b,(ix+5)
+557   001B  21 15 00    	ld	hl,0x0015
+558   001E  09          	add	hl, bc
+559   001F  36 7D       	ld	(hl),0x7d
+560   0021  23          	inc	hl
+561   0022  36 00       	ld	(hl),0x00
+562   0024  21 29 00    	ld	hl,0x0029
+563   0027  09          	add	hl, bc
+564   0028  36 FF       	ld	(hl),0xff
+565   002A  C5          	push	bc
+566   002B  3E 1C       	ld	a,0x1c
+567   002D  01 FF 01    	ld	bc,_saa_port_reg
+568   0030  ED 79       	out	(c),a
+569   0032  3E 02       	ld	a,0x02
+570   0034  01 FF 00    	ld	bc,_saa_port_val
+571   0037  ED 79       	out	(c),a
+572   0039  3E 00       	ld	a,0x00
+573   003B  01 FF 00    	ld	bc,_saa_port_val
+574   003E  ED 79       	out	(c),a
+575   0040  3E 1C       	ld	a,0x1c
+576   0042  01 FF 01    	ld	bc,_saa_port_reg
+577   0045  ED 79       	out	(c),a
+578   0047  3E 01       	ld	a,0x01
+579   0049  01 FF 00    	ld	bc,_saa_port_val
+580   004C  ED 79       	out	(c),a
+581   004E  3E 14       	ld	a,0x14
+582   0050  01 FF 01    	ld	bc,_saa_port_reg
+583   0053  ED 79       	out	(c),a
+584   0055  3E 3F       	ld	a,0x3f
+585   0057  01 FF 00    	ld	bc,_saa_port_val
+586   005A  ED 79       	out	(c),a
+587   005C  3E 15       	ld	a,0x15
+588   005E  01 FF 01    	ld	bc,_saa_port_reg
+589   0061  ED 79       	out	(c),a
+590   0063  3E 00       	ld	a,0x00
+591   0065  01 FF 00    	ld	bc,_saa_port_val
+592   0068  ED 79       	out	(c),a
+593   006A  3E 18       	ld	a,0x18
+594   006C  01 FF 01    	ld	bc,_saa_port_reg
+595   006F  ED 79       	out	(c),a
+596   0071  3E 00       	ld	a,0x00
+597   0073  01 FF 00    	ld	bc,_saa_port_val
+598   0076  ED 79       	out	(c),a
+599   0078  3E 19       	ld	a,0x19
+600   007A  01 FF 01    	ld	bc,_saa_port_reg
+601   007D  ED 79       	out	(c),a
+602   007F  3E 00       	ld	a,0x00
+603   0081  01 FF 00    	ld	bc,_saa_port_val
+604   0084  ED 79       	out	(c),a
+605   0086  C1          	pop	bc
+606   0087  AF          	xor	a, a
+607   0088  F5          	push	af
+608   0089  33          	inc	sp
+609   008A  C5          	push	bc
+610   008B  CD 78 03    	call	_SAATunesStopNote
+611   008E  F1          	pop	af
+612   008F  33          	inc	sp
+613   0090  3E 01       	ld	a,0x01
+614   0092  F5          	push	af
+615   0093  33          	inc	sp
+616   0094  DD 6E 04    	ld	l,(ix+4)
+617   0097  DD 66 05    	ld	h,(ix+5)
+618   009A  E5          	push	hl
+619   009B  CD 78 03    	call	_SAATunesStopNote
+620   009E  F1          	pop	af
+621   009F  33          	inc	sp
+622   00A0  3E 02       	ld	a,0x02
+623   00A2  F5          	push	af
+624   00A3  33          	inc	sp
+625   00A4  DD 6E 04    	ld	l,(ix+4)
+626   00A7  DD 66 05    	ld	h,(ix+5)
+627   00AA  E5          	push	hl
+628   00AB  CD 78 03    	call	_SAATunesStopNote
+629   00AE  F1          	pop	af
+630   00AF  33          	inc	sp
+631   00B0  3E 03       	ld	a,0x03
+632   00B2  F5          	push	af
+633   00B3  33          	inc	sp
+634   00B4  DD 6E 04    	ld	l,(ix+4)
+635   00B7  DD 66 05    	ld	h,(ix+5)
+636   00BA  E5          	push	hl
+637   00BB  CD 78 03    	call	_SAATunesStopNote
+638   00BE  F1          	pop	af
+639   00BF  33          	inc	sp
+640   00C0  3E 04       	ld	a,0x04
+641   00C2  F5          	push	af
+642   00C3  33          	inc	sp
+643   00C4  DD 6E 04    	ld	l,(ix+4)
+644   00C7  DD 66 05    	ld	h,(ix+5)
+645   00CA  E5          	push	hl
+646   00CB  CD 78 03    	call	_SAATunesStopNote
+647   00CE  F1          	pop	af
+648   00CF  33          	inc	sp
+649   00D0  3E 05       	ld	a,0x05
+650   00D2  F5          	push	af
+651   00D3  33          	inc	sp
+652   00D4  DD 6E 04    	ld	l,(ix+4)
+653   00D7  DD 66 05    	ld	h,(ix+5)
+654   00DA  E5          	push	hl
+655   00DB  CD 78 03    	call	_SAATunesStopNote
+656   00DE  F1          	pop	af
+657   00DF  33          	inc	sp
+658   00E0  DD E1       	pop	ix
+659   00E2  C9          	ret
+660   00E3              	SECTION code_compiler
+661   00E3              ;	---------------------------------
+662   00E3              ; Function SAATunesStrum
+663   00E3              ; ---------------------------------
+664   00E3              _SAATunesStrum:
+665   00E3  DD E5       	push	ix
+666   00E5  DD 21 00 00 	ld	ix,0
+667   00E9  DD 39       	add	ix,sp
+668   00EB  11 18 40    	ld	de,0x4018
+669   00EE  D5          	push	de
+670   00EF  3E 03       	ld	a,0x03
+671   00F1  F5          	push	af
+672   00F2  33          	inc	sp
+673   00F3  DD 6E 04    	ld	l,(ix+4)
+674   00F6  DD 66 05    	ld	h,(ix+5)
+675   00F9  E5          	push	hl
+676   00FA  CD EE 01    	call	_SAATunesPlayNote
+677   00FD  F1          	pop	af
+678   00FE  F1          	pop	af
+679   00FF  33          	inc	sp
+680   0100  21 64 00    	ld	hl,0x0064
+681   0103  CD 00 00    	call	_z80_delay_ms_fastcall
+682   0106  11 30 40    	ld	de,0x4030
+683   0109  D5          	push	de
+684   010A  AF          	xor	a, a
+685   010B  F5          	push	af
+686   010C  33          	inc	sp
+687   010D  DD 6E 04    	ld	l,(ix+4)
+688   0110  DD 66 05    	ld	h,(ix+5)
+689   0113  E5          	push	hl
+690   0114  CD EE 01    	call	_SAATunesPlayNote
+691   0117  F1          	pop	af
+692   0118  F1          	pop	af
+693   0119  33          	inc	sp
+694   011A  21 64 00    	ld	hl,0x0064
+695   011D  CD 00 00    	call	_z80_delay_ms_fastcall
+696   0120  11 34 40    	ld	de,0x4034
+697   0123  D5          	push	de
+698   0124  3E 01       	ld	a,0x01
+699   0126  F5          	push	af
+700   0127  33          	inc	sp
+701   0128  DD 6E 04    	ld	l,(ix+4)
+702   012B  DD 66 05    	ld	h,(ix+5)
+703   012E  E5          	push	hl
+704   012F  CD EE 01    	call	_SAATunesPlayNote
+705   0132  F1          	pop	af
+706   0133  F1          	pop	af
+707   0134  33          	inc	sp
+708   0135  21 64 00    	ld	hl,0x0064
+709   0138  CD 00 00    	call	_z80_delay_ms_fastcall
+710   013B  11 37 40    	ld	de,0x4037
+711   013E  D5          	push	de
+712   013F  3E 02       	ld	a,0x02
+713   0141  F5          	push	af
+714   0142  33          	inc	sp
+715   0143  DD 6E 04    	ld	l,(ix+4)
+716   0146  DD 66 05    	ld	h,(ix+5)
+717   0149  E5          	push	hl
+718   014A  CD EE 01    	call	_SAATunesPlayNote
+719   014D  F1          	pop	af
+720   014E  F1          	pop	af
+721   014F  33          	inc	sp
+722   0150  21 64 00    	ld	hl,0x0064
+723   0153  CD 00 00    	call	_z80_delay_ms_fastcall
+724   0156  11 3C 40    	ld	de,0x403c
+725   0159  D5          	push	de
+726   015A  3E 03       	ld	a,0x03
+727   015C  F5          	push	af
+728   015D  33          	inc	sp
+729   015E  DD 6E 04    	ld	l,(ix+4)
+730   0161  DD 66 05    	ld	h,(ix+5)
+731   0164  E5          	push	hl
+732   0165  CD EE 01    	call	_SAATunesPlayNote
+733   0168  F1          	pop	af
+734   0169  F1          	pop	af
+735   016A  33          	inc	sp
+736   016B  21 64 00    	ld	hl,0x0064
+737   016E  CD 00 00    	call	_z80_delay_ms_fastcall
+738   0171  11 40 40    	ld	de,0x4040
+739   0174  D5          	push	de
+740   0175  3E 04       	ld	a,0x04
+741   0177  F5          	push	af
+742   0178  33          	inc	sp
+743   0179  DD 6E 04    	ld	l,(ix+4)
+744   017C  DD 66 05    	ld	h,(ix+5)
+745   017F  E5          	push	hl
+746   0180  CD EE 01    	call	_SAATunesPlayNote
+747   0183  F1          	pop	af
+748   0184  F1          	pop	af
+749   0185  33          	inc	sp
+750   0186  21 00 04    	ld	hl,0x0400
+751   0189  CD 00 00    	call	_z80_delay_ms_fastcall
+752   018C  AF          	xor	a, a
+753   018D  F5          	push	af
+754   018E  33          	inc	sp
+755   018F  DD 6E 04    	ld	l,(ix+4)
+756   0192  DD 66 05    	ld	h,(ix+5)
+757   0195  E5          	push	hl
+758   0196  CD 78 03    	call	_SAATunesStopNote
+759   0199  F1          	pop	af
+760   019A  33          	inc	sp
+761   019B  3E 01       	ld	a,0x01
+762   019D  F5          	push	af
+763   019E  33          	inc	sp
+764   019F  DD 6E 04    	ld	l,(ix+4)
+765   01A2  DD 66 05    	ld	h,(ix+5)
+766   01A5  E5          	push	hl
+767   01A6  CD 78 03    	call	_SAATunesStopNote
+768   01A9  F1          	pop	af
+769   01AA  33          	inc	sp
+770   01AB  3E 02       	ld	a,0x02
+771   01AD  F5          	push	af
+772   01AE  33          	inc	sp
+773   01AF  DD 6E 04    	ld	l,(ix+4)
+774   01B2  DD 66 05    	ld	h,(ix+5)
+775   01B5  E5          	push	hl
+776   01B6  CD 78 03    	call	_SAATunesStopNote
+777   01B9  F1          	pop	af
+778   01BA  33          	inc	sp
+779   01BB  3E 03       	ld	a,0x03
+780   01BD  F5          	push	af
+781   01BE  33          	inc	sp
+782   01BF  DD 6E 04    	ld	l,(ix+4)
+783   01C2  DD 66 05    	ld	h,(ix+5)
+784   01C5  E5          	push	hl
+785   01C6  CD 78 03    	call	_SAATunesStopNote
+786   01C9  F1          	pop	af
+787   01CA  33          	inc	sp
+788   01CB  3E 04       	ld	a,0x04
+789   01CD  F5          	push	af
+790   01CE  33          	inc	sp
+791   01CF  DD 6E 04    	ld	l,(ix+4)
+792   01D2  DD 66 05    	ld	h,(ix+5)
+793   01D5  E5          	push	hl
+794   01D6  CD 78 03    	call	_SAATunesStopNote
+795   01D9  F1          	pop	af
+796   01DA  33          	inc	sp
+797   01DB  3E 05       	ld	a,0x05
+798   01DD  F5          	push	af
+799   01DE  33          	inc	sp
+800   01DF  DD 6E 04    	ld	l,(ix+4)
+801   01E2  DD 66 05    	ld	h,(ix+5)
+802   01E5  E5          	push	hl
+803   01E6  CD 78 03    	call	_SAATunesStopNote
+804   01E9  F1          	pop	af
+805   01EA  33          	inc	sp
+806   01EB  DD E1       	pop	ix
+807   01ED  C9          	ret
+808   01EE              	SECTION code_compiler
+809   01EE              ;	---------------------------------
+810   01EE              ; Function SAATunesPlayNote
+811   01EE              ; ---------------------------------
+812   01EE              _SAATunesPlayNote:
+813   01EE  DD E5       	push	ix
+814   01F0  DD 21 00 00 	ld	ix,0
+815   01F4  DD 39       	add	ix,sp
+816   01F6  21 F8 FF    	ld	hl, -8
+817   01F9  39          	add	hl, sp
+818   01FA  F9          	ld	sp, hl
+819   01FB  DD 4E 04    	ld	c,(ix+4)
+820   01FE  DD 46 05    	ld	b,(ix+5)
+821   0201  21 05 00    	ld	hl,0x0005
+822   0204  09          	add	hl, bc
+823   0205  EB          	ex	de, hl
+824   0206  DD 7E 06    	ld	a,(ix+6)
+825   0209  DD 77 F8    	ld	(ix-8),a
+826   020C  7B          	ld	a, e
+827   020D  DD 86 F8    	add	a,(ix-8)
+828   0210  DD 77 F9    	ld	(ix-7),a
+829   0213  7A          	ld	a, d
+830   0214  CE 00       	adc	a,0x00
+831   0216  DD 77 FA    	ld	(ix-6),a
+832   0219  DD 6E F9    	ld	l,(ix-7)
+833   021C  DD 66 FA    	ld	h,(ix-6)
+834   021F  36 00       	ld	(hl),0x00
+835   0221  3E 7F       	ld	a,0x7f
+836   0223  DD 96 07    	sub	a,(ix+7)
+837   0226  30 08       	jr	NC,l_SAATunesPlayNote_00102
+838   0228  DD 36 07 3C 	ld	(ix+7),0x3c
+839   022C  AF          	xor	a, a
+840   022D  DD 77 08    	ld	(ix+8),a
+841   0230              l_SAATunesPlayNote_00102:
+842   0230  DD 34 07    	inc	(ix+7)
+843   0233  DD 5E 07    	ld	e,(ix+7)
+844   0236  16 00       	ld	d,0x00
+845   0238  C5          	push	bc
+846   0239  21 0C 00    	ld	hl,0x000c
+847   023C  E5          	push	hl
+848   023D  D5          	push	de
+849   023E  CD 00 00    	call	__divsint_callee
+850   0241  5D          	ld	e, l
+851   0242  C1          	pop	bc
+852   0243  7B          	ld	a, e
+853   0244  C6 FF       	add	a,0xff
+854   0246  DD 77 FB    	ld	(ix-5),a
+855   0249  DD 77 FC    	ld	(ix-4),a
+856   024C  3C          	inc	a
+857   024D  5F          	ld	e, a
+858   024E  87          	add	a, a
+859   024F  83          	add	a, e
+860   0250  87          	add	a, a
+861   0251  87          	add	a, a
+862   0252  5F          	ld	e, a
+863   0253  DD 7E 07    	ld	a,(ix+7)
+864   0256  93          	sub	a, e
+865   0257  DD 77 FD    	ld	(ix-3),a
+866   025A  21 0B 00    	ld	hl,0x000b
+867   025D  09          	add	hl, bc
+868   025E  DD 75 FE    	ld	(ix-2),l
+869   0261  DD 74 FF    	ld	(ix-1),h
+870   0264  DD 7E FE    	ld	a,(ix-2)
+871   0267  DD 86 F8    	add	a,(ix-8)
+872   026A  5F          	ld	e, a
+873   026B  DD 7E FF    	ld	a,(ix-1)
+874   026E  CE 00       	adc	a,0x00
+875   0270  57          	ld	d, a
+876   0271  DD 7E FB    	ld	a,(ix-5)
+877   0274  12          	ld	(de), a
+878   0275  DD 6E F8    	ld	l,(ix-8)
+879   0278  26 00       	ld	h,0x00
+880   027A  5D          	ld	e, l
+881   027B  54          	ld	d, h
+882   027C  CB 7C       	bit	7, h
+883   027E  28 02       	jr	Z,l_SAATunesPlayNote_00113
+884   0280  EB          	ex	de,hl
+885   0281  13          	inc	de
+886   0282              l_SAATunesPlayNote_00113:
+887   0282  CB 2A       	sra	d
+888   0284  CB 1B       	rr	e
+889   0286  21 0D 00    	ld	hl,_octaveAdr
+890   0289  19          	add	hl, de
+891   028A  7E          	ld	a, (hl)
+892   028B  C5          	push	bc
+893   028C  01 FF 01    	ld	bc,_saa_port_reg
+894   028F  ED 79       	out	(c),a
+895   0291  C1          	pop	bc
+896   0292  DD 5E F8    	ld	e,(ix-8)
+897   0295  DD 7E F8    	ld	a,(ix-8)
+898   0298  B7          	or	a, a
+899   0299  28 0E       	jr	Z,l_SAATunesPlayNote_00103
+900   029B  DD 7E F8    	ld	a,(ix-8)
+901   029E  D6 02       	sub	a,0x02
+902   02A0  28 07       	jr	Z,l_SAATunesPlayNote_00103
+903   02A2  DD 7E F8    	ld	a,(ix-8)
+904   02A5  D6 04       	sub	a,0x04
+905   02A7  20 1B       	jr	NZ,l_SAATunesPlayNote_00104
+906   02A9              l_SAATunesPlayNote_00103:
+907   02A9  7B          	ld	a, e
+908   02AA  3C          	inc	a
+909   02AB  DD 86 FE    	add	a,(ix-2)
+910   02AE  6F          	ld	l, a
+911   02AF  3E 00       	ld	a,0x00
+912   02B1  DD 8E FF    	adc	a,(ix-1)
+913   02B4  67          	ld	h, a
+914   02B5  7E          	ld	a, (hl)
+915   02B6  87          	add	a, a
+916   02B7  87          	add	a, a
+917   02B8  87          	add	a, a
+918   02B9  87          	add	a, a
+919   02BA  DD B6 FB    	or	a,(ix-5)
+920   02BD  C5          	push	bc
+921   02BE  01 FF 00    	ld	bc,_saa_port_val
+922   02C1  ED 79       	out	(c),a
+923   02C3  C1          	pop	bc
+924   02C4              l_SAATunesPlayNote_00104:
+925   02C4  DD 7E F8    	ld	a,(ix-8)
+926   02C7  3D          	dec	a
+927   02C8  28 0E       	jr	Z,l_SAATunesPlayNote_00107
+928   02CA  DD 7E F8    	ld	a,(ix-8)
+929   02CD  D6 03       	sub	a,0x03
+930   02CF  28 07       	jr	Z,l_SAATunesPlayNote_00107
+931   02D1  DD 7E F8    	ld	a,(ix-8)
+932   02D4  D6 05       	sub	a,0x05
+933   02D6  20 1D       	jr	NZ,l_SAATunesPlayNote_00108
+934   02D8              l_SAATunesPlayNote_00107:
+935   02D8  DD 7E FC    	ld	a,(ix-4)
+936   02DB  87          	add	a, a
+937   02DC  87          	add	a, a
+938   02DD  87          	add	a, a
+939   02DE  87          	add	a, a
+940   02DF  57          	ld	d, a
+941   02E0  7B          	ld	a, e
+942   02E1  3D          	dec	a
+943   02E2  DD 86 FE    	add	a,(ix-2)
+944   02E5  6F          	ld	l, a
+945   02E6  3E 00       	ld	a,0x00
+946   02E8  DD 8E FF    	adc	a,(ix-1)
+947   02EB  67          	ld	h, a
+948   02EC  7E          	ld	a, (hl)
+949   02ED  B2          	or	a, d
+950   02EE  C5          	push	bc
+951   02EF  01 FF 00    	ld	bc,_saa_port_val
+952   02F2  ED 79       	out	(c),a
+953   02F4  C1          	pop	bc
+954   02F5              l_SAATunesPlayNote_00108:
+955   02F5  11 10 00    	ld	de,_channelAdr+0
+956   02F8  DD 6E F8    	ld	l,(ix-8)
+957   02FB  26 00       	ld	h,0x00
+958   02FD  19          	add	hl, de
+959   02FE  7E          	ld	a, (hl)
+960   02FF  C5          	push	bc
+961   0300  01 FF 01    	ld	bc,_saa_port_reg
+962   0303  ED 79       	out	(c),a
+963   0305  C1          	pop	bc
+964   0306  11 01 00    	ld	de,_noteAdr+0
+965   0309  DD 6E FD    	ld	l,(ix-3)
+966   030C  26 00       	ld	h,0x00
+967   030E  19          	add	hl, de
+968   030F  7E          	ld	a, (hl)
+969   0310  C5          	push	bc
+970   0311  01 FF 00    	ld	bc,_saa_port_val
+971   0314  ED 79       	out	(c),a
+972   0316  DD 7E F8    	ld	a,(ix-8)
+973   0319  01 FF 01    	ld	bc,_saa_port_reg
+974   031C  ED 79       	out	(c),a
+975   031E  C1          	pop	bc
+976   031F  21 23 00    	ld	hl,0x0023
+977   0322  09          	add	hl, bc
+978   0323  DD 5E F8    	ld	e,(ix-8)
+979   0326  16 00       	ld	d,0x00
+980   0328  19          	add	hl, de
+981   0329  36 01       	ld	(hl),0x01
+982   032B  21 17 00    	ld	hl,0x0017
+983   032E  09          	add	hl, bc
+984   032F  DD 5E F8    	ld	e,(ix-8)
+985   0332  16 00       	ld	d,0x00
+986   0334  19          	add	hl, de
+987   0335  36 00       	ld	(hl),0x00
+988   0337  DD 5E 08    	ld	e,(ix+8)
+989   033A  16 00       	ld	d,0x00
+990   033C  6B          	ld	l, e
+991   033D  62          	ld	h, d
+992   033E  CB 7A       	bit	7, d
+993   0340  28 04       	jr	Z,l_SAATunesPlayNote_00114
+994   0342  21 07 00    	ld	hl,0x0007
+995   0345  19          	add	hl, de
+996   0346              l_SAATunesPlayNote_00114:
+997   0346  EB          	ex	de,hl
+998   0347  CB 2A       	sra	d
+999   0349  CB 1B       	rr	e
+1000  034B  CB 2A       	sra	d
+1001  034D  CB 1B       	rr	e
+1002  034F  CB 2A       	sra	d
+1003  0351  CB 1B       	rr	e
+1004  0353  7B          	ld	a, e
+1005  0354  87          	add	a, a
+1006  0355  87          	add	a, a
+1007  0356  87          	add	a, a
+1008  0357  87          	add	a, a
+1009  0358  B3          	or	a, e
+1010  0359  C5          	push	bc
+1011  035A  01 FF 00    	ld	bc,_saa_port_val
+1012  035D  ED 79       	out	(c),a
+1013  035F  C1          	pop	bc
+1014  0360  21 1D 00    	ld	hl,0x001d
+1015  0363  09          	add	hl, bc
+1016  0364  DD 4E F8    	ld	c,(ix-8)
+1017  0367  06 00       	ld	b,0x00
+1018  0369  09          	add	hl, bc
+1019  036A  73          	ld	(hl), e
+1020  036B  DD 6E F9    	ld	l,(ix-7)
+1021  036E  DD 66 FA    	ld	h,(ix-6)
+1022  0371  36 01       	ld	(hl),0x01
+1023  0373  DD F9       	ld	sp, ix
+1024  0375  DD E1       	pop	ix
+1025  0377  C9          	ret
+1026  0378              	SECTION code_compiler
+1027  0378              ;	---------------------------------
+1028  0378              ; Function SAATunesStopNote
+1029  0378              ; ---------------------------------
+1030  0378              _SAATunesStopNote:
+1031  0378  DD E5       	push	ix
+1032  037A  DD 21 00 00 	ld	ix,0
+1033  037E  DD 39       	add	ix,sp
+1034  0380  DD 4E 04    	ld	c,(ix+4)
+1035  0383  DD 46 05    	ld	b,(ix+5)
+1036  0386  03          	inc	bc
+1037  0387  03          	inc	bc
+1038  0388  03          	inc	bc
+1039  0389  03          	inc	bc
+1040  038A  03          	inc	bc
+1041  038B  DD 6E 06    	ld	l,(ix+6)
+1042  038E  26 00       	ld	h,0x00
+1043  0390  09          	add	hl, bc
+1044  0391  36 00       	ld	(hl),0x00
+1045  0393  DD E1       	pop	ix
+1046  0395  C9          	ret
+1047  0396              	SECTION code_compiler
+1048  0396              ;	---------------------------------
+1049  0396              ; Function SAATunesTick
+1050  0396              ; ---------------------------------
+1051  0396              _SAATunesTick:
+1052  0396  DD E5       	push	ix
+1053  0398  DD 21 00 00 	ld	ix,0
+1054  039C  DD 39       	add	ix,sp
+1055  039E  21 F8 FF    	ld	hl, -8
+1056  03A1  39          	add	hl, sp
+1057  03A2  F9          	ld	sp, hl
+1058  03A3  DD 4E 04    	ld	c,(ix+4)
+1059  03A6  DD 46 05    	ld	b,(ix+5)
+1060  03A9  21 23 00    	ld	hl,0x0023
+1061  03AC  09          	add	hl, bc
+1062  03AD  E3          	ex	(sp), hl
+1063  03AE  1E 00       	ld	e,0x00
+1064  03B0              l_SAATunesTick_00109:
+1065  03B0  3E 05       	ld	a,0x05
+1066  03B2  93          	sub	a, e
+1067  03B3  DA 40 04    	jp	C, l_SAATunesTick_00111
+1068  03B6  DD 7E F8    	ld	a,(ix-8)
+1069  03B9  83          	add	a, e
+1070  03BA  DD 77 FA    	ld	(ix-6),a
+1071  03BD  DD 7E F9    	ld	a,(ix-7)
+1072  03C0  CE 00       	adc	a,0x00
+1073  03C2  DD 77 FB    	ld	(ix-5),a
+1074  03C5  DD 6E FA    	ld	l,(ix-6)
+1075  03C8  DD 66 FB    	ld	h,(ix-5)
+1076  03CB  6E          	ld	l, (hl)
+1077  03CC  CB 45       	bit	0, l
+1078  03CE  28 6C       	jr	Z,l_SAATunesTick_00110
+1079  03D0  21 17 00    	ld	hl,0x0017
+1080  03D3  09          	add	hl, bc
+1081  03D4  7D          	ld	a, l
+1082  03D5  83          	add	a, e
+1083  03D6  DD 77 FC    	ld	(ix-4),a
+1084  03D9  7C          	ld	a, h
+1085  03DA  CE 00       	adc	a,0x00
+1086  03DC  DD 77 FD    	ld	(ix-3),a
+1087  03DF  DD 6E FC    	ld	l,(ix-4)
+1088  03E2  DD 66 FD    	ld	h,(ix-3)
+1089  03E5  34          	inc	(hl)
+1090  03E6  69          	ld	l, c
+1091  03E7  60          	ld	h, b
+1092  03E8  C5          	push	bc
+1093  03E9  01 15 00    	ld	bc,0x0015
+1094  03EC  09          	add	hl, bc
+1095  03ED  C1          	pop	bc
+1096  03EE  7E          	ld	a, (hl)
+1097  03EF  DD 77 FE    	ld	(ix-2),a
+1098  03F2  23          	inc	hl
+1099  03F3  7E          	ld	a, (hl)
+1100  03F4  DD 77 FF    	ld	(ix-1),a
+1101  03F7  DD 6E FC    	ld	l,(ix-4)
+1102  03FA  DD 66 FD    	ld	h,(ix-3)
+1103  03FD  56          	ld	d, (hl)
+1104  03FE  2E 00       	ld	l,0x00
+1105  0400  7A          	ld	a, d
+1106  0401  DD 96 FE    	sub	a,(ix-2)
+1107  0404  7D          	ld	a, l
+1108  0405  DD 9E FF    	sbc	a,(ix-1)
+1109  0408  38 32       	jr	C,l_SAATunesTick_00110
+1110  040A  C5          	push	bc
+1111  040B  01 FF 01    	ld	bc,_saa_port_reg
+1112  040E  ED 59       	out	(c),e
+1113  0410  C1          	pop	bc
+1114  0411  21 1D 00    	ld	hl,0x001d
+1115  0414  09          	add	hl, bc
+1116  0415  16 00       	ld	d,0x00
+1117  0417  19          	add	hl, de
+1118  0418  7E          	ld	a, (hl)
+1119  0419  57          	ld	d, a
+1120  041A  3D          	dec	a
+1121  041B  77          	ld	(hl), a
+1122  041C  7A          	ld	a, d
+1123  041D  87          	add	a, a
+1124  041E  87          	add	a, a
+1125  041F  87          	add	a, a
+1126  0420  87          	add	a, a
+1127  0421  B2          	or	a, d
+1128  0422  C5          	push	bc
+1129  0423  01 FF 00    	ld	bc,_saa_port_val
+1130  0426  ED 79       	out	(c),a
+1131  0428  C1          	pop	bc
+1132  0429  DD 6E FC    	ld	l,(ix-4)
+1133  042C  DD 66 FD    	ld	h,(ix-3)
+1134  042F  36 00       	ld	(hl),0x00
+1135  0431  15          	dec	d
+1136  0432  20 08       	jr	NZ,l_SAATunesTick_00110
+1137  0434  DD 6E FA    	ld	l,(ix-6)
+1138  0437  DD 66 FB    	ld	h,(ix-5)
+1139  043A  36 00       	ld	(hl),0x00
+1140  043C              l_SAATunesTick_00110:
+1141  043C  1C          	inc	e
+1142  043D  C3 B0 03    	jp	l_SAATunesTick_00109
+1143  0440              l_SAATunesTick_00111:
+1144  0440  DD F9       	ld	sp, ix
+1145  0442  DD E1       	pop	ix
+1146  0444  C9          	ret
+1147  0445              	SECTION data_compiler
+1148  0000              _volume_present:
+1149  0000  00          	DEFB +0x00
+1150  0001              _noteAdr:
+1151  0001  05          	DEFB +0x05
+1152  0002  20          	DEFB +0x20
+1153  0003  3C          	DEFB +0x3c
+1154  0004  55          	DEFB +0x55
+1155  0005  6E          	DEFB +0x6e
+1156  0006  84          	DEFB +0x84
+1157  0007  99          	DEFB +0x99
+1158  0008  AD          	DEFB +0xad
+1159  0009  C0          	DEFB +0xc0
+1160  000A  D2          	DEFB +0xd2
+1161  000B  E3          	DEFB +0xe3
+1162  000C  F3          	DEFB +0xf3
+1163  000D              _octaveAdr:
+1164  000D  10          	DEFB +0x10
+1165  000E  11          	DEFB +0x11
+1166  000F  12          	DEFB +0x12
+1167  0010              _channelAdr:
+1168  0010  08          	DEFB +0x08
+1169  0011  09          	DEFB +0x09
+1170  0012  0A          	DEFB +0x0a
+1171  0013  0B          	DEFB +0x0b
+1172  0014  0C          	DEFB +0x0c
+1173  0015  0D          	DEFB +0x0d
+1174  0016              	SECTION IGNORE
+1175  0000              
