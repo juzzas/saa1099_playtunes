@@ -432,7 +432,7 @@ void SAATunesTick(struct SAATunesContext *context)
 
                     context->decay_timer[x] = 0;
 				
-					if (volume == 1)
+					if (volume == 0)
                     {
                         context->doing_decay[x] = false;
 					}
