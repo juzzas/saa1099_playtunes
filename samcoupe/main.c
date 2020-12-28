@@ -12,7 +12,7 @@ int main(void)
 
     SAATunesInit(&L_context);
 
-    //SAATunesStrum(&L_context);
+    SAATunesStrum(&L_context);
 
     SAATunesPlayScore(&L_context, score_auld_lang_syne);
 

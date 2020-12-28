@@ -307,7 +307,9 @@ void SAATunesStopNote (struct SAATunesContext *context, uint8_t chan) {
 void SAATunesPlayScore (struct SAATunesContext *context, const uint8_t *score) {
 
     context->volume_present = ASSUME_VOLUME;
-	
+
+    context->score_start = score;
+
 	// look for the optional file header
 	memcpy(&context->file_header, score, sizeof(struct file_hdr_t)); // copy possible header from PROGMEM to RAM
 	if (context->file_header.id1 == 'P' && context->file_header.id2 == 't') { // validate it
@@ -315,8 +317,7 @@ void SAATunesPlayScore (struct SAATunesContext *context, const uint8_t *score) {
         context->score_start += context->file_header.hdr_length; // skip the whole header
 	}
 
-    context->score_start = score;
-    context->score_cursor = score;
+    context->score_cursor = context->score_start;
     SAATunesStepScore(context);  /* execute initial commands */
     context->tune_playing = true; //Release the intterupt routine
 }
