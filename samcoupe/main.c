@@ -2,6 +2,7 @@
 #include <z80.h>
 
 #include "SAATunes.h"
+#include "score.h"
 
 static struct SAATunesContext L_context;
 
@@ -11,7 +12,9 @@ int main(void)
 
     SAATunesInit(&L_context);
 
-    SAATunesStrum(&L_context);
+    //SAATunesStrum(&L_context);
+
+    SAATunesPlayScore(&L_context, score_auld_lang_syne);
 
     while(1)
     {

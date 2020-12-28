@@ -67,20 +67,6 @@
 #include "SAATunes.h"
 
 
-static bool volume_present = ASSUME_VOLUME;
-struct file_hdr_t {  // the optional bytestream file header
-  char id1;     // 'P'
-  char id2;     // 't'
-  unsigned char hdr_length; // length of whole file header
-  unsigned char f1;         // flag byte 1
-  unsigned char f2;         // flag byte 2
-  unsigned char num_tgens;  // how many tone generators are used by this score
-} file_header;
-#define HDR_F1_VOLUME_PRESENT 0x80
-#define HDR_F1_INSTRUMENTS_PRESENT 0x40
-#define HDR_F1_PERCUSSION_PRESENT 0x20
-
-
 __sfr __banked __at SAA1099_PORT_VAL  saa_port_val;
 __sfr __banked __at SAA1099_PORT_REG  saa_port_reg;
 
@@ -88,11 +74,15 @@ static uint8_t noteAdr[] = {5, 32, 60, 85, 110, 132, 153, 173, 192, 210, 227, 24
 static uint8_t octaveAdr[] = {0x10, 0x11, 0x12}; //The 3 octave addresses (was 10, 11, 12)
 static uint8_t channelAdr[] = {0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D}; //Addresses for the channel frequencies
 
+static void SAATunesStepScore (struct SAATunesContext *context);
+
 // ******** Code Blocks ******** \\
 
 void SAATunesInit(struct SAATunesContext *context)
 {
     memset(context, 0, sizeof(*context));
+
+    context->volume_present = ASSUME_VOLUME;
 
 #if DO_DECAY
     //Modifiable delay rate variable (In MS, and each time the specified number of MS has passed, decays volume by 1/16).
@@ -314,22 +304,21 @@ void SAATunesStopNote (struct SAATunesContext *context, uint8_t chan) {
 //-----------------------------------------------
 // Start playing a score
 //-----------------------------------------------
-#if 0
-void SAATunes::tune_playscore (const uint8_t *score) {
-	
-	volume_present = ASSUME_VOLUME;
+void SAATunesPlayScore (struct SAATunesContext *context, const uint8_t *score) {
+
+    context->volume_present = ASSUME_VOLUME;
 	
 	// look for the optional file header
-	memcpy_P(&file_header, score, sizeof(file_hdr_t)); // copy possible header from PROGMEM to RAM
-	if (file_header.id1 == 'P' && file_header.id2 == 't') { // validate it
-		volume_present = file_header.f1 & HDR_F1_VOLUME_PRESENT;
-		score_start += file_header.hdr_length; // skip the whole header
+	memcpy(&context->file_header, score, sizeof(struct file_hdr_t)); // copy possible header from PROGMEM to RAM
+	if (context->file_header.id1 == 'P' && context->file_header.id2 == 't') { // validate it
+        context->volume_present = context->file_header.f1 & HDR_F1_VOLUME_PRESENT;
+        context->score_start += context->file_header.hdr_length; // skip the whole header
 	}
-	
-    score_start = score;
-    score_cursor = score;
-    tune_stepscore();  /* execute initial commands */
-    SAATunes::tune_playing = true; //Release the intterupt routine 
+
+    context->score_start = score;
+    context->score_cursor = score;
+    SAATunesStepScore(context);  /* execute initial commands */
+    context->tune_playing = true; //Release the intterupt routine
 }
 
 
@@ -351,35 +340,52 @@ static void SAATunesStepScore (struct SAATunesContext *context)
     unsigned duration;
 
     while (1) {
-        cmd = pgm_read_byte(score_cursor++);
-		
-        if (cmd < 0x80) { /* wait count in msec. */
-            duration = ((unsigned)cmd << 8) | (pgm_read_byte(score_cursor++));
-            wait_toggle_count = duration; //((unsigned long) wait_timer_frequency2 * duration + 500) / 1000
-		if (wait_toggle_count == 0) wait_toggle_count = 1;
+        cmd = *context->score_cursor;
+        context->score_cursor++;
+
+        if (cmd < 0x80)
+        { /* wait count in msec. */
+            duration = ((unsigned)cmd << 8) | *context->score_cursor;
+            context->score_cursor++;
+            context->wait_toggle_count = duration; //((unsigned long) wait_timer_frequency2 * duration + 500) / 1000
+
+            if (context->wait_toggle_count == 0)
+                context->wait_toggle_count = 1;
             break;
         }
 		
         opcode = cmd & 0xf0;
         chan = cmd & 0x0f; //Should erase the low nibble?
+
         if (opcode == CMD_STOPNOTE) { /* stop note */
-            tune_stopnote (chan);
+            SAATunesStopNote (context, chan);
         }
-        else if (opcode == CMD_PLAYNOTE) { /* play note */
-            note = pgm_read_byte(score_cursor++); // argument evaluation order is undefined in C!
+        else if (opcode == CMD_PLAYNOTE)
+        { /* play note */
+            note = *context->score_cursor;
+            context->score_cursor++;
+
 #if DO_VOLUME
-      vol = volume_present ? pgm_read_byte(score_cursor++) : 127;
-      tune_playnote (chan, note, vol);
+            if (context->volume_present) {
+                vol = *context->score_cursor;
+                context->score_cursor++;
+            }
+            else {
+                vol = 127;
+            }
+            SAATunesPlayNote(context, chan, note, vol);
 #else
-      if (volume_present) ++score_cursor; // skip volume byte
-      tune_playnote (chan, note);
+            if (context->volume_present)
+                ++context->score_cursor; // skip volume byte
+
+            SAATunesPlayNote (context, chan, note, 127);
 #endif
         }
         else if (opcode == CMD_RESTART) { /* restart score */
-            score_cursor = score_start;
+            context->score_cursor = context->score_start;
         }
         else if (opcode == CMD_STOP) { /* stop score */
-            SAATunes::tune_playing = false;
+            context->tune_playing = false;
             break;
         }
     }
@@ -390,26 +396,26 @@ static void SAATunesStepScore (struct SAATunesContext *context)
 // Stop playing a score
 //-----------------------------------------------
 
-void SAATunes::tune_stopscore (void) {
+void SAATunesStopScore (struct SAATunesContext *context) {
     int i;
+
     for (i=0; i<6; ++i)
-        tune_stopnote(i);
-    SAATunes::tune_playing = false;
+        SAATunesStopNote(context, i);
+
+    context->tune_playing = false;
 }
-#endif
+
 
 //Timer stuff
 // Interrupt is called once a millisecond
 void SAATunesTick(struct SAATunesContext *context)
 {
-#if 0
 	//Begin new note code
 	if (context->tune_playing && context->wait_toggle_count && --context->wait_toggle_count == 0) {
         // end of a score wait, so execute more score commands
-        tune_stepscore ();
+        SAATunesStepScore(context);
     }
-#endif
-	
+
 	#if DO_DECAY
 		//Note that this (the for loop) isn't ideal. Wish I didn't have to check every one, somehow.
 		for(uint8_t x = 0; x <= 5; x++){
