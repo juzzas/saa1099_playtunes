@@ -4,7 +4,6 @@
 CC=zcc
 AS=zcc
 ASM=z80asm
-APPMAKE=appmake
 TARGET=+embedded
 STARTUP=0   # ram model
 VERBOSITY=-v
