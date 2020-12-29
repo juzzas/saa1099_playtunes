@@ -32,8 +32,14 @@
 
 #define SAATUNES_CHANNELS_MAX 6
 
-#define SAA1099_PORT_VAL  255
-#define SAA1099_PORT_REG  511
+#ifndef SAA1099_PORT_DATA
+#error SAA1099_PORT_DATA not defined
+#endif
+
+#ifndef SAA1099_PORT_REG
+#error SAA1099_PORT_REG not defined
+#endif
+
 
 //Percussion variables
 #if DO_PERCUSSION

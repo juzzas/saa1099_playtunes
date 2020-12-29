@@ -12,6 +12,8 @@ VERBOSITY=-v
 
 PRAGMA_FILE=zpragma.inc
 
+DEFINES=-DSAA1099_PORT_REG=511 -DSAA1099_PORT_DATA=255
+
 C_OPT_FLAGS=-SO3 --max-allocs-per-node200000
 
 CFLAGS=$(TARGET) $(VERBOSITY) -c $(C_OPT_FLAGS) -compiler sdcc -clib=sdcc_iy -pragma-include:$(PRAGMA_FILE) -Ilib/include/sdcc -I../common -I../score
@@ -29,7 +31,7 @@ OBJECTS = main.o
 LIBS = @lib/libsam_sdcc_iy.lst
 
 %.o: %.c $(PRAGMA_FILE)
-	$(CC) $(CFLAGS) --list -o $@ $<
+	$(CC) $(CFLAGS) $(DEFINES) --list -o $@ $<
 
 %.o: %.asm
 	$(AS) $(ASFLAGS) --list -c -o $@ $<
@@ -40,7 +42,7 @@ all : $(EXEC)
 #	$(AS) $(ASFLAGS) --list -x -o $@ @lib/libsam_sdcc_iy.lst
 
 $(EXEC_PAYLOAD) : $(OBJECTS) #$(LIB_SAM)
-	$(CC) $(LDFLAGS) --list -startup=$(STARTUP) -m $(OBJECTS) $(COMMON) -o $(EXEC_PAYLOAD) -create-app
+	$(CC) $(LDFLAGS) $(DEFINES) --list -startup=$(STARTUP) -m $(OBJECTS) $(COMMON) -o $(EXEC_PAYLOAD) -create-app
 
 $(EXEC) : $(EXEC_PAYLOAD) bootstrap.asm
 	$(ASM) -mz80 -l -m -b bootstrap.asm

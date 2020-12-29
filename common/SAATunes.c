@@ -58,6 +58,8 @@
 	16 August 2018, Jacob Field
 	- Fixed reported bug: first letter of <arduino.h> in the #include line not being capitalized was breaking library on linux.
 	- Released as v1.04
+   28 December 2020, Justin Skists
+    - Ported to Z88DK for SAM Coupe and RC2014
   -----------------------------------------------------------------------------------------*/
 #include <stddef.h>
 #include <stdlib.h>
@@ -67,7 +69,7 @@
 #include "SAATunes.h"
 
 
-__sfr __banked __at SAA1099_PORT_VAL  saa_port_val;
+__sfr __banked __at SAA1099_PORT_DATA  saa_port_data;
 __sfr __banked __at SAA1099_PORT_REG  saa_port_reg;
 
 static uint8_t noteAdr[] = {5, 32, 60, 85, 110, 132, 153, 173, 192, 210, 227, 243}; // The 12 note-within-an-octave values for the SAA1099, starting at B
@@ -96,26 +98,26 @@ void SAATunesInit(struct SAATunesContext *context)
 
     // Reset/Enable all the sound channels
     saa_port_reg = 0x1c;
-    saa_port_val = 0x02;
-    saa_port_val = 0x00;
+    saa_port_data = 0x02;
+    saa_port_data = 0x00;
 
     saa_port_reg = 0x1c;
-    saa_port_val = 0x01;
+    saa_port_data = 0x01;
 
     // Enable the frequency channels
     saa_port_reg = 0x14;
-    saa_port_val = 0x3f;
+    saa_port_data = 0x3f;
 
     // Disable the noise channels
     saa_port_reg = 0x15;
-    saa_port_val = 0x00;
+    saa_port_data = 0x00;
 
     // Disable envelopes on Channels 2 and 5
     saa_port_reg = 0x18;
-    saa_port_val = 0x00;
+    saa_port_data = 0x00;
 
     saa_port_reg = 0x19;
-    saa_port_val = 0x00;
+    saa_port_data = 0x00;
 
     SAATunesStopNote(context, 0);
     SAATunesStopNote(context, 1);
@@ -173,11 +175,11 @@ void SAATunesPlayNote(struct SAATunesContext *context, uint8_t chan, uint8_t not
   saa_port_reg = octaveAdr[chan / 2];
 
   if (chan == 0 || chan == 2 || chan == 4) {
-      saa_port_val = octave | (context->prevOctaves[chan + 1] << 4); //Do fancy math so that we don't overwrite what's already on the register, except in the area we want to.
+      saa_port_data = octave | (context->prevOctaves[chan + 1] << 4); //Do fancy math so that we don't overwrite what's already on the register, except in the area we want to.
   }
   
   if (chan == 1 || chan == 3 || chan == 5) {
-      saa_port_val = (octave << 4) | context->prevOctaves[chan - 1]; //Do fancy math so that we don't overwrite what's already on the register, except in the area we want to.
+      saa_port_data = (octave << 4) | context->prevOctaves[chan - 1]; //Do fancy math so that we don't overwrite what's already on the register, except in the area we want to.
   }
   
   //Note addressing and playing code
@@ -189,7 +191,7 @@ void SAATunesPlayNote(struct SAATunesContext *context, uint8_t chan, uint8_t not
 
 
   //Write actual note data
-    saa_port_val = noteAdr[noteVal];
+    saa_port_data = noteAdr[noteVal];
 
   //Volume updating
   //Set the Address to the volume (amplitude) channel
@@ -206,7 +208,7 @@ void SAATunesPlayNote(struct SAATunesContext *context, uint8_t chan, uint8_t not
         //Velocity is a value from 0-127, the SAA1099 only has 16 levels, so divide by 8.
         uint8_t vol = volume / 8;
 
-        saa_port_val = (vol << 4) | vol;
+        saa_port_data = (vol << 4) | vol;
 
 #if DO_DECAY
         //Update the beginning volume for the decay controller
@@ -217,7 +219,7 @@ void SAATunesPlayNote(struct SAATunesContext *context, uint8_t chan, uint8_t not
   #else
 		
 	//If we're not doing velocity, then just set it to max.
-	saa_port_val = 0xff;
+	saa_port_data = 0xff;
 
 	#if DO_DECAY
 		//Update the beginning volume for the decay controller
@@ -435,7 +437,7 @@ void SAATunesTick(struct SAATunesContext *context)
                     context->decay_volume[x] -= 1;
 				
 					//Then, write modified volume
-					saa_port_val = (volume << 4) | volume;
+					saa_port_data = (volume << 4) | volume;
 
                     context->decay_timer[x] = 0;
 				
